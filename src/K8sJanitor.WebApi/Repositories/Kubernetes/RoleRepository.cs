@@ -197,6 +197,21 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "watch"
                         }
                     },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "policy"
+                        },
+                        Resources = new List<string>
+                        {
+                            "poddisruptionbudget"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*",
+                        }
+                    },                    
                 }
             };
             try
