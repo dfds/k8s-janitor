@@ -197,6 +197,21 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "watch"
                         }
                     },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "traefik.containo.us",
+                        },
+                        Resources = new List<string>
+                        {
+                            "*"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
                 }
             };
             try
