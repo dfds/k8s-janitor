@@ -64,9 +64,15 @@ spec:
             - name: KUBERNETES_SERVICE_KAFKA_API_VERSION_FALLBACK_MS
               value: "0"
             - name: KUBERNETES_SERVICE_KAFKA_SASL_USERNAME
-              value: $(KUBERNETES_SERVICE_KAFKA_SASL_USERNAME)
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-janitor-kafka-credentials
+                  key: username
             - name: KUBERNETES_SERVICE_KAFKA_SASL_PASSWORD
-              value: $(KUBERNETES_SERVICE_KAFKA_SASL_PASSWORD)
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-janitor-kafka-credentials
+                  key: password
             - name: KUBERNETES_SERVICE_KAFKA_GROUP_ID
               value: "$(KUBERNETES_SERVICE_KAFKA_GROUP_ID)"
             - name: KUBERNETES_SERVICE_KAFKA_ENABLE_AUTO_COMMIT
