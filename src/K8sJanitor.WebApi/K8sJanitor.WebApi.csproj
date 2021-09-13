@@ -14,8 +14,9 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.S3" Version="3.3.31.6" />
     <PackageReference Include="Confluent.Kafka" Version="1.1.0" />
-    <PackageReference Include="KubernetesClient" Version="1.2.0" />
+    <PackageReference Include="KubernetesClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="2.2.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="3.5.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="2.0.0" />

@@ -17,10 +17,10 @@ namespace K8sJanitor.WebApi.Wrappers
         }
 
 
-        public Task<V1Role> CreateNamespacedRoleAsync(V1Role body, string namespaceParameter, string pretty = null,
+        public Task<V1Role> CreateNamespacedRoleAsync(V1Role body, string namespaceParameter, bool? pretty = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return _kubernetes.CreateNamespacedRoleAsync(body, namespaceParameter, pretty, cancellationToken);
+            return _kubernetes.CreateNamespacedRoleAsync(body, namespaceParameter, pretty: pretty, cancellationToken: cancellationToken);
         }
 
         public Task CreateNamespacedConfigMapAsync(V1ConfigMap body, string namespaceParameter)
@@ -36,16 +36,12 @@ namespace K8sJanitor.WebApi.Wrappers
         public async Task<V1ConfigMap> ReadNamespacedConfigMapAsync(
             string name,
             string namespaceParameter,
-            bool? exact = null,
-            bool? export = null,
-            string pretty = null,
+            bool? pretty = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _kubernetes.ReadNamespacedConfigMapAsync(
                 name,
                 namespaceParameter,
-                exact,
-                export,
                 pretty,
                 cancellationToken
             );
@@ -53,15 +49,11 @@ namespace K8sJanitor.WebApi.Wrappers
 
         public async Task<V1Namespace> ReadNamespaceAsync(
             string name,
-            bool? exact = null,
-            bool? export = null,
-            string pretty = null,
+            bool? pretty = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _kubernetes.ReadNamespaceAsync(
                 name,
-                exact,
-                export,
                 pretty,
                 cancellationToken
             );
@@ -71,44 +63,44 @@ namespace K8sJanitor.WebApi.Wrappers
         public async Task<HttpOperationResponse<V1Namespace>> PatchNamespaceWithHttpMessagesAsync(
             V1Patch body,
             string name,
-            string pretty = null,
+            bool? pretty = null,
             Dictionary<string, List<string>> customHeaders = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _kubernetes.PatchNamespaceWithHttpMessagesAsync(
                 body,
                 name,
-                pretty,
-                customHeaders,
-                cancellationToken
+                pretty: pretty,
+                customHeaders: customHeaders,
+                cancellationToken: cancellationToken
             );
         }
 
         public Task CreateNamespaceAsync(
             V1Namespace body, 
-            string pretty, 
+            bool? pretty, 
             CancellationToken cancellationToken = default(CancellationToken)
         )
         {
             return _kubernetes.CreateNamespaceAsync(
                 body, 
-                pretty, 
-                cancellationToken
+                pretty: pretty, 
+                cancellationToken: cancellationToken
             );
         }
 
         public Task<V1RoleBinding> CreateNamespacedRoleBindingAsync(
             V1RoleBinding body, 
             string namespaceParameter, 
-            string pretty = null,
+            bool? pretty = null,
             CancellationToken cancellationToken = default(CancellationToken)
         )
         {
             return _kubernetes.CreateNamespacedRoleBindingAsync(
                 body,
                 namespaceParameter,
-                pretty,
-                cancellationToken
+                pretty: pretty,
+                cancellationToken: cancellationToken
             );
         }
     }
