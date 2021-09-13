@@ -81,7 +81,8 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
             };
             var patch = new JsonPatchDocument<V1Namespace>();
             patch.Replace(n => n.Metadata, metadata);
-            await _client.PatchNamespaceWithHttpMessagesAsync(new V1Patch(patch), namespaceName);
+            
+            await _client.PatchNamespaceWithHttpMessagesAsync(new V1Patch(patch, V1Patch.PatchType.JsonPatch), namespaceName);
         }
         
         public async Task CreateNamespaceAsync(string namespaceName, string accountId)

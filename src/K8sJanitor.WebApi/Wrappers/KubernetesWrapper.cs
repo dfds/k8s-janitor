@@ -70,6 +70,7 @@ namespace K8sJanitor.WebApi.Wrappers
             return await _kubernetes.PatchNamespaceWithHttpMessagesAsync(
                 body,
                 name,
+                fieldManager: "k8s-janitor",
                 pretty: pretty,
                 customHeaders: customHeaders,
                 cancellationToken: cancellationToken
