@@ -74,6 +74,10 @@ namespace K8sJanitor.WebApi.Infrastructure.Messaging
                                 catch (Exception ex)
                                 {
                                     _logger.LogError($"Error consuming event. Exception message: {ex.Message}", ex);
+                                    _logger.LogError(ex.StackTrace);
+                                    _cancellationTokenSource.Cancel();
+                                    System.Environment.Exit(1);
+                                    //throw;
                                 }
                             }
                         }

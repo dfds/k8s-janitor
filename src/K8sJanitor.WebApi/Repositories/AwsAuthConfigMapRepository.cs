@@ -63,9 +63,7 @@ namespace K8sJanitor.WebApi.Repositories
             {
                 return await _client.ReadNamespacedConfigMapAsync(
                     name: ConfigMapName,
-                    namespaceParameter: ConfigMapNamespace,
-                    exact: true,
-                    export: true
+                    namespaceParameter: ConfigMapNamespace
                 );
             }
             catch (HttpOperationException httpOperationException) when (httpOperationException.Response.StatusCode ==

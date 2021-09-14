@@ -12,6 +12,7 @@ namespace K8sJanitor.WebApi.IntegrationTests.Repositories.Kubernetes.RoleReposit
     // Reads as RoleRepository.CreateNamespaceFullAccessRole can
     public class CreateNamespaceFullAccessRoleFacts
     {
+        // This test breaks if it is used in a cluster where roles are created automatically in a namespace(e.g. having Crossplane running)
         [FactRunsOnK8s]
         public async Task Create_A_Role_For_A_Existing_Namespace()
         {
