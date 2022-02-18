@@ -11,7 +11,7 @@ metadata:
   name: k8s-janitor-sa
   namespace: selfservice
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::$(aws-account-id):role/k8s-janitor
+    eks.amazonaws.com/role-arn: arn:aws:iam::$(aws-account-id):role/k8s-janitor # replace with actual account id
     eks.amazonaws.com/sts-regional-endpoints: "true"
 ---
 
