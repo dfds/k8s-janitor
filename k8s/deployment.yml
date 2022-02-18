@@ -14,7 +14,6 @@ spec:
       labels:
         app: k8s-janitor
       annotations:
-        iam.amazonaws.com/role: eks-hellman-self-service
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
         logging_dfds_cloud_format_json: "true"
