@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="AWSSDK.S3" Version="3.7.7.22" />
+    <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.1.115" />
     <PackageReference Include="Confluent.Kafka" Version="1.1.0" />
     <PackageReference Include="KubernetesClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
