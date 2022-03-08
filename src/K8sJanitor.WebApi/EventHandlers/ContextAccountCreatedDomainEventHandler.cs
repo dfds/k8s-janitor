@@ -112,6 +112,10 @@ namespace K8sJanitor.WebApi.EventHandlers
                 {
                     "iam.amazonaws.com/permitted",
                     IAM.ConstructRoleArn(domainEvent.Payload.AccountId, ".*")
+                },
+                {
+                    "dfds-aws-account-id",
+                    domainEvent.Payload.AccountId
                 }
             });
         }
