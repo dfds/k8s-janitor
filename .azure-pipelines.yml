@@ -13,7 +13,7 @@ steps:
       export DOCKER_PASSWORD=$(DOCKER_PASSWORD)
       chmod +x ./pipeline.sh
       ./pipeline.sh $(Build.BuildId) $(System.DefaultWorkingDirectory)
-      dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.5
+      dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 5.0.4
       ./reportgenerator "-reports:$(System.DefaultWorkingDirectory)/output/coverage.cobertura.xml" "-targetdir:$(System.DefaultWorkingDirectory)/output" "-reporttypes:HTMLInline;HTMLChart"
       rm -f "$(System.DefaultWorkingDirectory)/output/index.html"
     displayName: Pipeline Bash Script
