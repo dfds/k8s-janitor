@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /build/out ./
 
 #Non-root user settings
-ARG USERNAME=harald
+ARG USERNAME=K8sJanitor
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
