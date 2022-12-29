@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8sjanitor.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- with .Values.global.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end}}
+    app: {{ include "k8sjanitor.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "k8sjanitor.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "k8sjanitor.fullname" . }}
+      annotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+        logging_dfds_cloud_format_json: "true"
+    spec:
+      {{- if .Values.priorityClass.enabled }}
+      priorityClassName: {{ .Values.priorityClass.name }}
+      {{- end }}
+      serviceAccountName: {{ include "k8sjanitor.fullname" . }}-sa
+      containers:
+        - name: k8s-janitor
+          image: "{{ .Values.image.repository}}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+              name: web
+            - containerPort: 8080
+              name: metrics
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.healthCheck.enabled }}
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            httpGet:
+              port: web
+              path: /healthz
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            httpGet:
+              port: web
+              path: /healthz
+          {{- end }}
+          env:
+            - name: AWS_S3_BUCKET_REGION
+              value: {{ .Values.k8sjanitor.aws.s3BucketRegion }}
+            - name: AWS_S3_BUCKET_NAME_CONFIG_MAP
+              value: {{ .Values.k8sjanitor.aws.s3BucketNameConfigMap }}
+            - name: CONFIG_MAP_FILE_NAME
+              value: {{ .Values.k8sjanitor.configMapFileName }}
+            - name: KUBERNETES_SERVICE_KAFKA_BOOTSTRAP_SERVERS
+              value: {{ .Values.k8sjanitor.kafka.bootstrapServers }}
+            - name: KUBERNETES_SERVICE_KAFKA_BROKER_VERSION_FALLBACK
+              value: {{ .Values.k8sjanitor.kafka.brokerVersionFallback }}
+            - name: KUBERNETES_SERVICE_KAFKA_API_VERSION_FALLBACK_MS
+              value: "{{ .Values.k8sjanitor.kafka.apiVersionFallBack }}"
+            - name: KUBERNETES_SERVICE_KAFKA_SASL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-janitor-kafka-credentials
+                  key: username
+            - name: KUBERNETES_SERVICE_KAFKA_SASL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-janitor-kafka-credentials
+                  key: password
+            - name: KUBERNETES_SERVICE_KAFKA_GROUP_ID
+              value: {{ .Values.k8sjanitor.kafka.consumerGroupId }}
+            - name: KUBERNETES_SERVICE_KAFKA_ENABLE_AUTO_COMMIT
+              value: "{{ .Values.k8sjanitor.kafka.autoCommit }}"
+            - name: KUBERNETES_SERVICE_KAFKA_SASL_MECHANISMS
+              value: {{ .Values.k8sjanitor.kafka.saslMechanisms }}
+            - name: KUBERNETES_SERVICE_KAFKA_SECURITY_PROTOCOL
+              value: {{ .Values.k8sjanitor.kafka.securityProtocol }}

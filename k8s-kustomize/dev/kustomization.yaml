@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+helmGlobals:
+  chartHome: ../..
+resources:
+- secret.yaml
+- serviceaccount.yaml
+helmCharts:
+  - releaseName: k8s-janitor
+    name: chart
+    namespace: selfservice
+    valuesInline:
+      image:
+        repository: ce/k8s-janitor
+        tag: "latest"
+      healthCheck:
+        enabled: false
+      k8sjanitor:
+        aws:
+          s3BucketRegion: "eu-west-1"
+          s3BucketNameConfigMap: "dummy-dev"
+        configMapFileName: "dummy-dev"
+        kafka:
+          bootstrapServers: "kafka.selfservice.svc.cluster.local"
+          consumerGroupId: "k8s-janitor"
+          autoCommit: "false"
