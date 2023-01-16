@@ -212,6 +212,21 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "*"
                         }
                     },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "monitoring.coreos.com",
+                        },
+                        Resources = new List<string>
+                        {
+                            "servicemonitors"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },                    
                 }
             };
             try
