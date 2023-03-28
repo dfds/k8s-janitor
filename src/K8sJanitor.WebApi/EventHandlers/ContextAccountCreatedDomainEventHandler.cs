@@ -45,8 +45,6 @@ namespace K8sJanitor.WebApi.EventHandlers
 
             await CreateNameSpace(namespaceName, domainEvent);
 
-            await ConnectAwsArnToNameSpace(namespaceName, domainEvent.Payload.RoleArn);
-
             var namespaceRoleName = await CreateRoleForNamespace(namespaceName);
 
             await BindNamespacedRoleToGroup(namespaceName, namespaceRoleName);
@@ -118,18 +116,6 @@ namespace K8sJanitor.WebApi.EventHandlers
                     domainEvent.Payload.AccountId
                 }
             });
-        }
-
-        public async Task ConnectAwsArnToNameSpace(NamespaceName namespaceName, string roleArn)
-        {
-            var roleName = namespaceName;
-
-            await _configMapService.AddRole(
-                roleName: roleName,
-                roleArn: roleArn
-            );
-            var annotations = new Dictionary<string, string>();
-            await _namespaceRepository.AddAnnotations(namespaceName, annotations);
         }
     }
 }
