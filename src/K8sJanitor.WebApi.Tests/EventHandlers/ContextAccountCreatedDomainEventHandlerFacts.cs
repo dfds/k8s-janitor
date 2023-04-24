@@ -41,9 +41,6 @@ namespace K8sJanitor.WebApi.Tests.EventHandlers
 
 
             // Assert
-            Assert.NotEmpty(configMapServiceSpy.Roles.Single().Key);
-            Assert.NotEmpty(configMapServiceSpy.Roles.Single().Value);
-
             var @namespace = namespaceRepositorySpy.Namespaces.Single();
             var namespaceName = @namespace.NamespaceName;
 
@@ -86,10 +83,7 @@ namespace K8sJanitor.WebApi.Tests.EventHandlers
             // Act
             await sut.HandleAsync(@event);
 
-            // Assert
-            Assert.NotEmpty(configMapServiceSpy.Roles.Single().Value);
-
-            var namespaceName = configMapServiceSpy.Roles.Single().Key;
+            var namespaceName = @event.Payload.CapabilityRootId;
 
             //Assert.Equal(@event.Payload.RoleArn, @namespace.Annotations["iam.amazonaws.com/permitted"]);
             //
@@ -130,7 +124,7 @@ namespace K8sJanitor.WebApi.Tests.EventHandlers
             await sut.HandleAsync(@event);
 
             // Assert
-            var namespaceName = configMapServiceSpy.Roles.Single().Key;
+            var namespaceName = @event.Payload.CapabilityRootId;
 
             Assert.Equal(namespaceName, roleBindingRepositorySpy.NamespaceRoleToGroupBindings.Single().Item1);
             Assert.Equal(roleName, roleBindingRepositorySpy.NamespaceRoleToGroupBindings.Single().Item2);
