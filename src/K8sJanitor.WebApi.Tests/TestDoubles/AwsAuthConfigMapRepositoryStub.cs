@@ -25,8 +25,8 @@ namespace K8sJanitor.WebApi.Tests.TestDoubles
             groups:
             - system:bootstrappers
             - system:nodes
-            - rolearn: arn:aws:iam::738063116313:role/ADFS-ViewOnly
-            username: ADFS-ViewOnly:{{SessionName}}
+            - rolearn: arn:aws:iam::738063116313:role/ViewOnly
+            username: ViewOnly:{{SessionName}}
     groups:
     - DFDS-ReadOnly}}"
                 }
@@ -42,8 +42,8 @@ namespace K8sJanitor.WebApi.Tests.TestDoubles
             groups:
                 - system:bootstrappers
                 - system:nodes
-            - rolearn: arn:aws:iam::738063116313:role/ADFS-ViewOnly
-            username: ADFS-ViewOnly:{{SessionName}}
+            - rolearn: arn:aws:iam::738063116313:role/ViewOnly
+            username: ViewOnly:{{SessionName}}
             groups:
             - DFDS-ReadOnly
         Kind: ConfigMap
@@ -65,8 +65,8 @@ namespace K8sJanitor.WebApi.Tests.TestDoubles
             groups:
                 - system:bootstrappers
                 - system:nodes
-            - rolearn: arn:aws:iam::738063116313:role/ADFS-ViewOnly
-            username: ADFS-ViewOnly:{{SessionName}}
+            - rolearn: arn:aws:iam::738063116313:role/ViewOnly
+            username: ViewOnly:{{SessionName}}
             groups:
             - DFDS-ReadOnly";
 

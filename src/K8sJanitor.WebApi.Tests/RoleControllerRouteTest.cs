@@ -41,8 +41,8 @@ namespace K8sJanitor.WebApi.Tests
                     .Build();
 
                 var stubInput = @"{
-                                ""roleName"": ""ADFS-ViewOnly"",
-                                ""roleArn"": ""arn:aws:iam::738063116313:role/ADFS-ViewOnly""
+                                ""roleName"": ""ViewOnly"",
+                                ""roleArn"": ""arn:aws:iam::738063116313:role/ViewOnly""
                                 }";
 
                 var response = await client.PostAsync("/api/roles", new JsonContent(stubInput));
