@@ -171,10 +171,10 @@ namespace K8sJanitor.WebApi.Tests.EventHandlers
             var roleArn = "arn:aws:iam::123456789012:Role/RolePath";
             var id = Guid.NewGuid();
             var contextAccountCreatedDomainEventData = new ContextAccountCreatedDomainEventData(
-                capabilityId: id,
+                capabilityId: id.ToString(),
                 capabilityName: "foo",
                 capabilityRootId: "foo-" + id.ToString().Substring(0, 8),
-                contextId: Guid.NewGuid(),
+                contextId: Guid.NewGuid().ToString(),
                 contextName: "baa",
                 accountId: "210987654321",
                 roleArn: roleArn,

@@ -17,8 +17,8 @@ namespace K8sJanitor.WebApi.Tests.Application
         {
             // Arrange
             var typeName = "LovelyLittleEventType";
-            var contextIdUsed = Guid.Parse(contextId);
-            var capabilityIdUsed = Guid.Parse(capabilityId);
+            var contextIdUsed = contextId;
+            var capabilityIdUsed = capabilityId;
             var domainEventRegistry = new DomainEventRegistrySpy(typeName); // We need to stub
             var publishingEventsQueue = new PublishingEventsQueueSpy();
             
@@ -42,7 +42,7 @@ namespace K8sJanitor.WebApi.Tests.Application
         [Fact]
         public async Task return_expected_k8s_namespace_event_payload_json()
         {
-            var evtPre = new K8sNamespaceCreatedAndAwsArnConnectedEvent("onprem-b6fdd382", Guid.Parse("b6fdd382-8723-410d-a7af-5c0a1eeb0a23"), Guid.Parse("8dbbe1a3-55e8-4ac9-ae7d-01c54fdd0147"));
+            var evtPre = new K8sNamespaceCreatedAndAwsArnConnectedEvent("onprem-b6fdd382", "b6fdd382-8723-410d-a7af-5c0a1eeb0a23", "8dbbe1a3-55e8-4ac9-ae7d-01c54fdd0147");
 
             var data = JsonConvert.SerializeObject(evtPre, new JsonSerializerSettings
             {
@@ -58,8 +58,8 @@ namespace K8sJanitor.WebApi.Tests.Application
         public class K8sNamespaceCreatedAndAwsArnConnectedEventTestStructure
         {
             public string NamespaceName { get; set; }
-            public Guid ContextId { get; set; }
-            public Guid CapabilityId { get; set; }
+            public string ContextId { get; set; }
+            public string CapabilityId { get; set; }
         }
     }
 }

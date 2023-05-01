@@ -21,7 +21,7 @@ namespace K8sJanitor.WebApi.Application
             _publishingEventsQueue = publishingEventsQueue;
         }
 
-        public async Task FireEventK8sNamespaceCreatedAndAwsArnConnected(string namespaceName, Guid contextId, Guid capabilityId)
+        public async Task FireEventK8sNamespaceCreatedAndAwsArnConnected(string namespaceName, string contextId, string capabilityId)
         {
             try
             {

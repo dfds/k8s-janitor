@@ -7,10 +7,10 @@ namespace K8sJanitor.WebApi.Domain.Events
     {
         
         public string NamespaceName { get; }
-        public Guid ContextId { get;  }
-        public Guid CapabilityId { get;  }
+        public string ContextId { get;  }
+        public string CapabilityId { get;  }
 
-        public K8sNamespaceCreatedAndAwsArnConnectedEvent(string namespaceName, Guid contextId, Guid capabilityId)
+        public K8sNamespaceCreatedAndAwsArnConnectedEvent(string namespaceName, string contextId, string capabilityId)
         {
             NamespaceName = namespaceName;
             ContextId = contextId;
