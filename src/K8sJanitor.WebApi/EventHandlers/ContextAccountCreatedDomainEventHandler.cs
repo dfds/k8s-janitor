@@ -114,6 +114,14 @@ namespace K8sJanitor.WebApi.EventHandlers
                 {
                     "dfds-aws-account-id",
                     domainEvent.Payload.AccountId
+                },
+                {
+                    "pod-security.kubernetes.io/audit",
+                    "baseline"
+                },
+                {
+                    "pod-security.kubernetes.io/warn",
+                    "baseline"
                 }
             });
         }
