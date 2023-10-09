@@ -93,7 +93,8 @@ namespace K8sJanitor.WebApi.EventHandlers
                 Label.CreateSafely("capability-id", domainEvent.Payload.CapabilityId.ToString()),
                 Label.CreateSafely("capability-name", domainEvent.Payload.CapabilityName),
                 Label.CreateSafely("context-id", domainEvent.Payload.ContextId.ToString()),
-                Label.CreateSafely("context-name", domainEvent.Payload.ContextName)
+                Label.CreateSafely("context-name", domainEvent.Payload.ContextName),
+                Label.CreateSafely("pod-security.kubernetes.io/enforce", "baseline")
             };
 
             try
@@ -114,14 +115,6 @@ namespace K8sJanitor.WebApi.EventHandlers
                 {
                     "dfds-aws-account-id",
                     domainEvent.Payload.AccountId
-                },
-                {
-                    "pod-security.kubernetes.io/audit",
-                    "baseline"
-                },
-                {
-                    "pod-security.kubernetes.io/warn",
-                    "baseline"
                 }
             });
         }
