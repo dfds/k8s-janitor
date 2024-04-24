@@ -221,7 +221,12 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                         },
                         Resources = new List<string>
                         {
-                            "*"
+                            "ecrauthorizationtokens",
+                            "externalsecrets",
+                            "fakes",
+                            "passwords"
+                            "secretstores",
+                            "webhooks"
                         },
                         Verbs = new List<string>
                         {
