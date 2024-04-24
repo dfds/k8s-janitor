@@ -202,10 +202,46 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                         ApiGroups = new List<string>
                         {
                             "traefik.containo.us",
+                            "traefik.io"
                         },
                         Resources = new List<string>
                         {
                             "*"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "external-secrets.io"
+                        },
+                        Resources = new List<string>
+                        {
+                            "ecrauthorizationtokens",
+                            "externalsecrets",
+                            "fakes",
+                            "passwords",
+                            "secretstores",
+                            "webhooks"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "monitoring.coreos.com"
+                        },
+                        Resources = new List<string>
+                        {
+                            "servicemonitors"
                         },
                         Verbs = new List<string>
                         {
