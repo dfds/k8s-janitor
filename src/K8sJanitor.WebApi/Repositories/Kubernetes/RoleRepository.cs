@@ -224,7 +224,7 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "ecrauthorizationtokens",
                             "externalsecrets",
                             "fakes",
-                            "passwords"
+                            "passwords",
                             "secretstores",
                             "webhooks"
                         },
