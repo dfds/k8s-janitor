@@ -248,6 +248,39 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "*"
                         }
                     },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "druid.apache.org"
+                        },
+                        Resources = new List<string>
+                        {
+                            "druids/status"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "get",
+                            "patch",
+                            "update"
+                        }
+                    },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "druid.apache.org"
+                        },
+                        Resources = new List<string>
+                        {
+                            "druids",
+                            "druidingestions"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
                 }
             };
             try
