@@ -281,6 +281,54 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                             "*"
                         }
                     },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "source.toolkit.fluxcd.io"
+                        },
+                        Resources = new List<string>
+                        {
+                            "gitrepositories",
+                            "helmcharts",
+                            "helmrepositories",
+                            "ocirepositories"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "helm.toolkit.fluxcd.io"
+                        },
+                        Resources = new List<string>
+                        {
+                            "helmreleases"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
+                    new V1PolicyRule
+                    {
+                        ApiGroups = new List<string>
+                        {
+                            "kustomize.toolkit.fluxcd.io"
+                        },
+                        Resources = new List<string>
+                        {
+                            "kustomizations"
+                        },
+                        Verbs = new List<string>
+                        {
+                            "*"
+                        }
+                    },
                 }
             };
             try
