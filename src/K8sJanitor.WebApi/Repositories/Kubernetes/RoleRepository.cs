@@ -201,7 +201,6 @@ namespace K8sJanitor.WebApi.Repositories.Kubernetes
                     {
                         ApiGroups = new List<string>
                         {
-                            "traefik.containo.us",
                             "traefik.io"
                         },
                         Resources = new List<string>
